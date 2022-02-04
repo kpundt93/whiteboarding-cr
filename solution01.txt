@@ -1,0 +1,71 @@
+Question #1: Turning Strings into URLs
+
+Prompt: URLs cannot have spaces. Instead, all spaces in a string are replaced with %20. Write an algorithm that replaces all spaces in a string with %20.
+
+You may not use the replace() method or regular expressions to solve this problem. Solve the problem with and without recursion.
+
+Questions for interviewers:
+- Can I always expect a string as an input?
+
+Possible edge cases: 
+- An empty string
+
+Example Inputs/Outputs:
+Input: "Jasmine Ann Jones"
+Output: "Jasmine%20Ann%20Jones"
+
+Input: "Test String"
+Output: "Test%20String"
+
+Input: "Test"
+Output: "Test"
+
+Input: " "
+Output: "%20"
+
+Solution without recursion:
+	1. Separate string into an array using .split() on spaces
+	2. Rejoin the array into a new string using .join("%20") to replace spaces with %20
+	3. Return new string
+	
+function stringIntoUrl(string) {
+	let stringArray = string.split(" ");
+	let url = stringArray.join("%20");
+	return url;
+}
+
+Refactored solution:
+Chained methods
+function stringIntoUrl(string) {
+	let url = string.split(" ").join("%20");
+	return url;
+}
+
+Chained methods and implicit return
+function stringIntoUrl(string) {
+	return string.split(" ").join("%20");
+}
+
+
+Solution with recursion:
+I need to have something to break the recursion loop... so I'll write a function that checks for empty strings. If the string is an empty string, the loop will break and return "%20"
+
+const stringIntoUrl = (string) => { // this solution isn't actually recursive
+	if (!string.includes(" ")) {
+		return string;
+	} else {
+		return string.split(" ").join("%20");
+	}
+}
+
+const stringIntoUrl = (string, index = 0, url = "") => {
+	if (index === string.length) { // if the string length is 0, return the url and break out of the loop
+		return url;
+	}
+	if (string[index] === " ") { // if the character at the string index is an empty string, add "%20" to the url;
+		url += "%20";
+	} else { // if the character isn't an empty string, add the character to the url
+		url += string[index]
+	}
+	return stringIntoUrl(string, ++index, url); // call the function again, and increment the index to check the next character
+}
