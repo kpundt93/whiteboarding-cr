@@ -9,6 +9,7 @@ Questions for interviewers:
 
 Possible edge cases: 
 - An empty string
+- String with a space at the end
 
 Example Inputs/Outputs:
 Input: "Jasmine Ann Jones"
@@ -19,6 +20,9 @@ Output: "Test%20String"
 
 Input: "Test"
 Output: "Test"
+
+Input: "Test "
+Output "Test%20"
 
 Input: " "
 Output: "%20"
