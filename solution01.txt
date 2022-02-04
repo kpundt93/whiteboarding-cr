@@ -6,6 +6,7 @@ You may not use the replace() method or regular expressions to solve this proble
 
 Questions for interviewers:
 - Can I always expect a string as an input?
+- Can I used build in methods?
 
 Possible edge cases: 
 - An empty string

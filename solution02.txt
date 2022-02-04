@@ -4,7 +4,7 @@ Prompt: Write an algorithm that removes duplicates from an array. Do not use a f
 
 Questions for interviewers:
 - Will numbers always be passed as integers? (no numbers as strings?)
-- 
+- Can I used build in methods?
 
 Possible edge cases: 
 - An empty array
@@ -68,19 +68,6 @@ const removeDupes = (array) => {
 	const uniqueArray = array.slice(0, -1); // create new array based off of original
 	if (uniqueArray.includes(array[array.length - 1])) { // compare the arrays
 		return removeDupes(uniqueArray) // if match is found, return and call the function again
-	} else {
-		return removeDupes(uniqueArray).concat(array[array.length - 1]) // if no match is found, search the next index
-	}
-}
-
-const removeDupes = (array) => {
-	if (array.length === 0) {
-		return array.concat([]);
-	}
-	const uniqueArray = [...array];
-	console.log uniqueArray;
-	if (uniqueArray.includes(array[array.length - 1])) {
-		return removeDupes(uniqueArray);
 	} else {
 		return removeDupes(uniqueArray).concat(array[array.length - 1]) // if no match is found, search the next index
 	}
