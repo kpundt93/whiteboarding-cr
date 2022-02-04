@@ -50,14 +50,6 @@ function stringIntoUrl(string) {
 Solution with recursion:
 I need to have something to break the recursion loop... so I'll write a function that checks for empty strings. If the string is an empty string, the loop will break and return "%20"
 
-const stringIntoUrl = (string) => { // this solution isn't actually recursive
-	if (!string.includes(" ")) {
-		return string;
-	} else {
-		return string.split(" ").join("%20");
-	}
-}
-
 const stringIntoUrl = (string, index = 0, url = "") => {
 	if (index === string.length) { // if the string length is 0, return the url and break out of the loop
 		return url;
