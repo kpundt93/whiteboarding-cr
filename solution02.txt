@@ -1,0 +1,87 @@
+Question #2: Array Deduping
+
+Prompt: Write an algorithm that removes duplicates from an array. Do not use a function like filter() to solve this. Once you have solved the problem, demonstrate how it can be solved with filter(). Solve the problem with and without recursion.
+
+Questions for interviewers:
+- Will numbers always be passed as integers? (no numbers as strings?)
+- 
+
+Possible edge cases: 
+- An empty array
+
+Example Inputs/Outputs:
+Input: [7, 9, "hi", 12, "hi", 7, 53]
+Output: [7, 9, "hi", 12, 53]
+
+Input: [3, 3, 3, 3]
+Output: [3]
+
+Input: [3, "3"]
+Output: [3, "3"] ? // technically, these elements are not duplicates as they are different datatypes
+
+Input: []
+Output: []
+
+
+Solution without recursion or filter:
+1. Copy the original array using spread syntax
+2. Use the Set object to create a new array of unique elements
+
+let array = [7, 9, "hi", 12, "hi", 7, 53];
+function removeDupes(array) {
+	let noDupes = [...new Set(array)]
+	return noDupes;
+}
+
+// using a foreach
+function removeDupes(array) {
+	let noDupes = [];
+	array.forEach(function(element) {
+		if(!noDupes.includes(element)) {
+			noDupes.push(element);
+		}
+	});
+}	
+
+Solution with filter:
+1. Compare all elements in array to see if the index is the first time that element appears
+2. Create new array with unique elements
+
+let array = [7, 9, "hi", 12, "hi", 7, 53];
+function removeDupes(array) {
+	let uniqueArray = array.filter((element, index) => {
+		return array.indexOf(element) === index;
+	});
+	return uniqueArray;
+}
+
+Solution with recursion:
+Write a function that takes an array, if that array's length is 0, break out of the recursive loop.
+Create a constant array to 
+
+const array = [7, 9, "hi", 12, "hi", 7, 53];
+
+const removeDupes = (array) => {
+	if (array.length === 0) {
+		return array.concat([]);
+	}
+	const uniqueArray = array.slice(0, -1); // create new array based off of original
+	if (uniqueArray.includes(array[array.length - 1])) { // compare the arrays
+		return removeDupes(uniqueArray) // if match is found, return and call the function again
+	} else {
+		return removeDupes(uniqueArray).concat(array[array.length - 1]) // if no match is found, search the next index
+	}
+}
+
+const removeDupes = (array) => {
+	if (array.length === 0) {
+		return array.concat([]);
+	}
+	const uniqueArray = [...array];
+	console.log uniqueArray;
+	if (uniqueArray.includes(array[array.length - 1])) {
+		return removeDupes(uniqueArray);
+	} else {
+		return removeDupes(uniqueArray).concat(array[array.length - 1]) // if no match is found, search the next index
+	}
+}
