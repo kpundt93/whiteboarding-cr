@@ -4,7 +4,6 @@ Prompt: Write an algorithm that removes duplicates from an array. Do not use a f
 
 Questions for interviewers:
 - Will numbers always be passed as integers? (no numbers as strings?)
-- Can I used build in methods?
 
 Possible edge cases: 
 - An empty array
@@ -49,7 +48,7 @@ Solution with filter:
 
 let array = [7, 9, "hi", 12, "hi", 7, 53];
 function removeDupes(array) {
-	let uniqueArray = array.filter((element, index) => {
+	let uniqueArray = array.filter(function(element, index) {
 		return array.indexOf(element) === index;
 	});
 	return uniqueArray;
